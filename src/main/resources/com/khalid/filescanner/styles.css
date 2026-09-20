@@ -1,0 +1,34 @@
+.root {
+    -fx-font-size: 13px;
+}
+
+.toolbar {
+    -fx-background-color: #f4f6f8;
+    -fx-border-color: #d9dee3;
+    -fx-border-width: 0 0 1 0;
+}
+
+.section-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.stat-value {
+    -fx-font-weight: bold;
+    -fx-text-fill: #1f5fbf;
+}
+
+.hint {
+    -fx-text-fill: #6b7580;
+}
+
+.stats-panel {
+    -fx-background-color: #fafbfc;
+    -fx-border-color: #d9dee3;
+    -fx-border-width: 0 0 0 1;
+}
+
+.button:default {
+    -fx-background-color: #1f5fbf;
+    -fx-text-fill: white;
+}
