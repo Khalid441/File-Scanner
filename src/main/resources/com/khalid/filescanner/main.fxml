@@ -25,6 +25,7 @@
                         <Button fx:id="startBtn" defaultButton="true" onAction="#onStart" text="Start Scan" />
                         <Button fx:id="pauseBtn" onAction="#onPause" text="Pause" />
                         <Button fx:id="cancelBtn" onAction="#onCancel" text="Cancel" />
+                        <ToggleButton fx:id="themeToggle" onAction="#onToggleTheme" text="Dark mode" />
                      </HBox>
                      <HBox alignment="CENTER_LEFT" spacing="8.0">
                         <TextField fx:id="searchField" prefWidth="280.0" promptText="Search by file name..." />

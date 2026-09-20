@@ -1,5 +1,6 @@
 package com.khalid.filescanner.controller;
-
+import com.khalid.filescanner.util.ThemeManager;
+import javafx.scene.control.ToggleButton;
 import com.khalid.filescanner.api.VirusTotalClient;
 import com.khalid.filescanner.db.DatabaseManager;
 import com.khalid.filescanner.json.JsonService;
@@ -91,7 +92,7 @@ public class MainController {
     @FXML private TableColumn<FileRecord, Long> modifiedCol;
     @FXML private TableColumn<FileRecord, String> pathCol;
     @FXML private BarChart<String, Number> extChart;
-
+    @FXML private ToggleButton themeToggle;
     // Injected automatically because history.fxml is included with fx:id="history"
     @FXML private HistoryController historyController;
 
@@ -122,6 +123,8 @@ public class MainController {
         historyController.setOnLoadScan(this::loadFromHistory);
         setScanningState(false);
         updateCount();
+        themeToggle.setSelected(ThemeManager.isDark());
+        themeToggle.setText(ThemeManager.isDark() ? "Light mode" : "Dark mode");
     }
 
     // ------------------------------------------------------------------ setup
@@ -446,6 +449,13 @@ public class MainController {
             vtBusy.set(false);
         });
         Async.run(task);
+    }
+    @FXML
+    private void onToggleTheme() {
+        boolean dark = themeToggle.isSelected();
+        ThemeManager.apply(themeToggle.getScene(), dark);
+        ThemeManager.remember(dark);
+        themeToggle.setText(dark ? "Light mode" : "Dark mode");
     }
 
     private Window window() {
