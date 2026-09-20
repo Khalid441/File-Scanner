@@ -3,6 +3,7 @@ package com.khalid.filescanner;
 import com.khalid.filescanner.db.DatabaseManager;
 import com.khalid.filescanner.util.AlertUtil;
 import com.khalid.filescanner.util.AppException;
+import com.khalid.filescanner.util.ThemeManager;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +33,8 @@ public class App extends Application {
 
         Scene scene = new Scene(loader.load(), width, height);
         scene.getStylesheets().add(App.class.getResource("/com/khalid/filescanner/styles.css").toExternalForm());
+        ThemeManager.apply(scene, ThemeManager.isDark()); // must come after styles.css
+
         stage.setTitle("File Scanner Dashboard");
         stage.setScene(scene);
         stage.setMinWidth(Math.min(950, width));

@@ -1,0 +1,31 @@
+.root {
+    -fx-base: #2b2d30;
+    -fx-background: #1e1f22;
+    -fx-control-inner-background: #2b2d30;
+    -fx-accent: #3574f0;
+    -fx-focus-color: #3574f0;
+    -fx-faint-focus-color: #3574f022;
+}
+
+.toolbar {
+    -fx-background-color: #26282b;
+    -fx-border-color: #3a3d41;
+}
+
+.stats-panel {
+    -fx-background-color: #232427;
+    -fx-border-color: #3a3d41;
+}
+
+.hint {
+    -fx-text-fill: #9aa0a6;
+}
+
+.stat-value {
+    -fx-text-fill: #6ea8ff;
+}
+
+.button:default {
+    -fx-background-color: #3574f0;
+    -fx-text-fill: white;
+}
