@@ -25,6 +25,9 @@
          <TableColumn fx:id="durationCol" prefWidth="90.0" text="Duration" />
          <TableColumn fx:id="noteCol" prefWidth="250.0" text="Note" />
       </columns>
+      <columnResizePolicy>
+         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
       <placeholder>
          <Label styleClass="hint" text="No saved scans yet" />
       </placeholder>
