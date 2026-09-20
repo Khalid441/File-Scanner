@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.khalid.filescanner.controller.HistoryController">
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <HBox alignment="CENTER_LEFT" spacing="8.0">
+      <Button onAction="#refresh" text="Refresh" />
+      <Button fx:id="loadBtn" onAction="#onLoad" text="Load into Scanner" />
+      <Button fx:id="noteBtn" onAction="#onEditNote" text="Edit note" />
+      <Button fx:id="deleteBtn" onAction="#onDelete" text="Delete" />
+      <Label fx:id="infoLabel" styleClass="hint" text="0 saved scan(s)" />
+   </HBox>
+   <TableView fx:id="historyTable" VBox.vgrow="ALWAYS">
+      <columns>
+         <TableColumn fx:id="idCol" prefWidth="50.0" text="ID" />
+         <TableColumn fx:id="rootCol" prefWidth="330.0" text="Folder" />
+         <TableColumn fx:id="dateCol" prefWidth="150.0" text="Started" />
+         <TableColumn fx:id="filesCol" prefWidth="80.0" text="Files" />
+         <TableColumn fx:id="sizeCol" prefWidth="90.0" text="Size" />
+         <TableColumn fx:id="durationCol" prefWidth="90.0" text="Duration" />
+         <TableColumn fx:id="noteCol" prefWidth="250.0" text="Note" />
+      </columns>
+      <placeholder>
+         <Label styleClass="hint" text="No saved scans yet" />
+      </placeholder>
+   </TableView>
+</VBox>
