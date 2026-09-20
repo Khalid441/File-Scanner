@@ -6,7 +6,9 @@ import com.khalid.filescanner.util.AppException;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,13 +22,25 @@ public class App extends Application {
         } catch (AppException e) {
             AlertUtil.error("Database problem", e.getMessage());
         }
+
         FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/khalid/filescanner/main.fxml"));
-        Scene scene = new Scene(loader.load(), 1200, 780);
+
+        // Fit the window to the visible screen area (excludes the taskbar)
+        Rectangle2D screen = Screen.getPrimary().getVisualBounds();
+        double width = Math.min(1200, screen.getWidth() * 0.9);
+        double height = Math.min(780, screen.getHeight() * 0.9);
+
+        Scene scene = new Scene(loader.load(), width, height);
         scene.getStylesheets().add(App.class.getResource("/com/khalid/filescanner/styles.css").toExternalForm());
         stage.setTitle("File Scanner Dashboard");
         stage.setScene(scene);
-        stage.setMinWidth(950);
-        stage.setMinHeight(600);
+        stage.setMinWidth(Math.min(950, width));
+        stage.setMinHeight(Math.min(600, height));
+
+        // Center it inside the visible area
+        stage.setX(screen.getMinX() + (screen.getWidth() - width) / 2);
+        stage.setY(screen.getMinY() + (screen.getHeight() - height) / 2);
+
         stage.setOnCloseRequest(e -> {
             Platform.exit();
             System.exit(0); // make sure background scan threads stop
