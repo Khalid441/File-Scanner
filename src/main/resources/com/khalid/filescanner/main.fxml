@@ -18,83 +18,92 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <HBox alignment="CENTER_LEFT" spacing="8.0">
-                        <Button fx:id="chooseBtn" onAction="#onChooseFolder" text="Choose Folder..." />
-                        <Label fx:id="folderLabel" maxWidth="Infinity" styleClass="hint" text="No folder selected" HBox.hgrow="ALWAYS" />
-                        <Label text="Threads:" />
-                        <Spinner fx:id="threadSpinner" editable="true" initialValue="4" max="16" min="1" prefWidth="80.0" />
+                        <Button fx:id="chooseBtn" minWidth="-Infinity" onAction="#onChooseFolder" text="Choose Folder..." />
+                        <Label fx:id="folderLabel" maxWidth="Infinity" minWidth="0.0" styleClass="hint" text="No folder selected" textOverrun="CENTER_ELLIPSIS" HBox.hgrow="ALWAYS" />
+                     </HBox>
+                     <FlowPane alignment="CENTER_LEFT" hgap="8.0" vgap="8.0">
+                        <HBox alignment="CENTER_LEFT" spacing="6.0">
+                           <Label text="Threads:" />
+                           <Spinner fx:id="threadSpinner" editable="true" initialValue="4" max="16" min="1" prefWidth="80.0" />
+                        </HBox>
                         <Button fx:id="startBtn" defaultButton="true" onAction="#onStart" text="Start Scan" />
                         <Button fx:id="pauseBtn" onAction="#onPause" text="Pause" />
                         <Button fx:id="cancelBtn" onAction="#onCancel" text="Cancel" />
                         <ToggleButton fx:id="themeToggle" onAction="#onToggleTheme" text="Dark mode" />
-                     </HBox>
-                     <HBox alignment="CENTER_LEFT" spacing="8.0">
-                        <TextField fx:id="searchField" prefWidth="280.0" promptText="Search by file name..." />
+                     </FlowPane>
+                     <FlowPane alignment="CENTER_LEFT" hgap="8.0" vgap="8.0">
+                        <TextField fx:id="searchField" prefWidth="240.0" promptText="Search by file name..." />
                         <ComboBox fx:id="categoryCombo" prefWidth="150.0" />
-                        <Label fx:id="resultCountLabel" maxWidth="Infinity" styleClass="hint" text="Showing 0 of 0 files" HBox.hgrow="ALWAYS" />
+                        <Label fx:id="resultCountLabel" styleClass="hint" text="Showing 0 of 0 files" />
                         <CheckBox fx:id="autoSaveCheck" selected="true" text="Save scan to history" />
                         <Button fx:id="exportBtn" onAction="#onExport" text="Export JSON" />
                         <Button fx:id="importBtn" onAction="#onImport" text="Import JSON" />
-                     </HBox>
+                     </FlowPane>
                   </VBox>
                </top>
                <center>
-                  <TableView fx:id="tableView" BorderPane.alignment="CENTER">
-                     <columns>
-                        <TableColumn fx:id="nameCol" prefWidth="220.0" text="Name" />
-                        <TableColumn fx:id="extCol" prefWidth="70.0" text="Type" />
-                        <TableColumn fx:id="sizeCol" prefWidth="90.0" text="Size" />
-                        <TableColumn fx:id="modifiedCol" prefWidth="130.0" text="Modified" />
-                        <TableColumn fx:id="pathCol" prefWidth="380.0" text="Path" />
-                     </columns>
-                     <placeholder>
-                        <Label styleClass="hint" text="Choose a folder and press Start Scan" />
-                     </placeholder>
-                  </TableView>
+                  <SplitPane dividerPositions="0.72" BorderPane.alignment="CENTER">
+                     <items>
+                        <TableView fx:id="tableView">
+                           <columns>
+                              <TableColumn fx:id="nameCol" prefWidth="220.0" text="Name" />
+                              <TableColumn fx:id="extCol" prefWidth="70.0" text="Type" />
+                              <TableColumn fx:id="sizeCol" prefWidth="90.0" text="Size" />
+                              <TableColumn fx:id="modifiedCol" prefWidth="130.0" text="Modified" />
+                              <TableColumn fx:id="pathCol" prefWidth="380.0" text="Path" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                           <placeholder>
+                              <Label styleClass="hint" text="Choose a folder and press Start Scan" />
+                           </placeholder>
+                        </TableView>
+                        <VBox minWidth="200.0" prefWidth="330.0" spacing="10.0" styleClass="stats-panel" SplitPane.resizableWithParent="false">
+                           <padding>
+                              <Insets bottom="10.0" left="12.0" right="12.0" top="12.0" />
+                           </padding>
+                           <Label styleClass="section-title" text="Scan statistics" />
+                           <GridPane hgap="12.0" vgap="6.0">
+                              <Label text="Files" GridPane.rowIndex="0" />
+                              <Label fx:id="filesLabel" styleClass="stat-value" text="0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                              <Label text="Folders" GridPane.rowIndex="1" />
+                              <Label fx:id="foldersLabel" styleClass="stat-value" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label text="Total size" GridPane.rowIndex="2" />
+                              <Label fx:id="sizeLabel" styleClass="stat-value" text="0 B" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Unreadable" GridPane.rowIndex="3" />
+                              <Label fx:id="errorsLabel" styleClass="stat-value" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label text="Elapsed" GridPane.rowIndex="4" />
+                              <Label fx:id="elapsedLabel" styleClass="stat-value" text="0 ms" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                           </GridPane>
+                           <BarChart fx:id="extChart" animated="false" legendVisible="false" minHeight="160.0" title="Top file types" VBox.vgrow="ALWAYS">
+                              <xAxis>
+                                 <CategoryAxis side="BOTTOM" />
+                              </xAxis>
+                              <yAxis>
+                                 <NumberAxis label="Files" side="LEFT" />
+                              </yAxis>
+                           </BarChart>
+                        </VBox>
+                     </items>
+                  </SplitPane>
                </center>
-               <right>
-                  <VBox prefWidth="330.0" spacing="10.0" styleClass="stats-panel" BorderPane.alignment="CENTER">
-                     <padding>
-                        <Insets bottom="10.0" left="12.0" right="12.0" top="12.0" />
-                     </padding>
-                     <Label styleClass="section-title" text="Scan statistics" />
-                     <GridPane hgap="12.0" vgap="6.0">
-                        <Label text="Files" GridPane.rowIndex="0" />
-                        <Label fx:id="filesLabel" styleClass="stat-value" text="0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                        <Label text="Folders" GridPane.rowIndex="1" />
-                        <Label fx:id="foldersLabel" styleClass="stat-value" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Total size" GridPane.rowIndex="2" />
-                        <Label fx:id="sizeLabel" styleClass="stat-value" text="0 B" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label text="Unreadable" GridPane.rowIndex="3" />
-                        <Label fx:id="errorsLabel" styleClass="stat-value" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label text="Elapsed" GridPane.rowIndex="4" />
-                        <Label fx:id="elapsedLabel" styleClass="stat-value" text="0 ms" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                     </GridPane>
-                     <BarChart fx:id="extChart" animated="false" legendVisible="false" title="Top file types" VBox.vgrow="ALWAYS">
-                        <xAxis>
-                           <CategoryAxis side="BOTTOM" />
-                        </xAxis>
-                        <yAxis>
-                           <NumberAxis label="Files" side="LEFT" />
-                        </yAxis>
-                     </BarChart>
-                  </VBox>
-               </right>
                <bottom>
                   <VBox spacing="8.0">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="8.0" />
                      </padding>
                      <HBox alignment="CENTER_LEFT" spacing="10.0">
-                        <ProgressBar fx:id="progressBar" maxWidth="Infinity" prefHeight="18.0" progress="0.0" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="statusLabel" minWidth="320.0" text="Ready" />
+                        <ProgressBar fx:id="progressBar" maxWidth="Infinity" minWidth="80.0" prefHeight="18.0" progress="0.0" HBox.hgrow="ALWAYS" />
+                        <Label fx:id="statusLabel" maxWidth="420.0" minWidth="0.0" text="Ready" textOverrun="ELLIPSIS" />
                      </HBox>
                      <Separator />
-                     <HBox alignment="CENTER_LEFT" spacing="8.0">
+                     <FlowPane alignment="CENTER_LEFT" hgap="8.0" vgap="6.0">
                         <Label text="VirusTotal check for the selected file:" />
                         <PasswordField fx:id="apiKeyField" prefWidth="220.0" promptText="API key (or set VT_API_KEY)" />
                         <Button fx:id="vtBtn" onAction="#onCheckVirusTotal" text="Check hash" />
-                        <Label fx:id="vtResultLabel" maxWidth="Infinity" styleClass="hint" text="Select a file in the table first." HBox.hgrow="ALWAYS" />
-                     </HBox>
+                        <Label fx:id="vtResultLabel" prefWidth="420.0" styleClass="hint" text="Select a file in the table first." wrapText="true" />
+                     </FlowPane>
                   </VBox>
                </bottom>
             </BorderPane>

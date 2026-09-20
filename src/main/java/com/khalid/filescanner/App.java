@@ -37,8 +37,8 @@ public class App extends Application {
 
         stage.setTitle("File Scanner Dashboard");
         stage.setScene(scene);
-        stage.setMinWidth(Math.min(950, width));
-        stage.setMinHeight(Math.min(600, height));
+        stage.setMinWidth(Math.min(650, width));
+        stage.setMinHeight(Math.min(450, height));
 
         // Center it inside the visible area
         stage.setX(screen.getMinX() + (screen.getWidth() - width) / 2);
