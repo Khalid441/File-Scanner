@@ -1,0 +1,12 @@
+# Maven
+target/
+# IntelliJ
+.idea/
+*.iml
+out/
+# Local databases / exports
+*.db
+scan-results*.json
+# OS
+.DS_Store
+Thumbs.db
