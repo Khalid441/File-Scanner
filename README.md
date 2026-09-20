@@ -30,8 +30,8 @@ progress, a searchable/filterable results table, and scan statistics, without fr
 - IntelliJ: open the folder as a Maven project, then run `com.khalid.filescanner.Launcher`
 - Terminal: `mvn javafx:run`
 
-## VirusTotal (optional)
-Get a free API key at virustotal.com, then paste it in the app or set the `VT_API_KEY`
+## VirusTotal 
+ a free API key at virustotal.com, then paste it in the app or set the `VT_API_KEY`
 environment variable. Only the file's SHA-256 hash is sent, never the file itself.
 
 ## Data location
