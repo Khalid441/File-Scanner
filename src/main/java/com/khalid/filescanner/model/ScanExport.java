@@ -1,5 +1,8 @@
 package com.khalid.filescanner.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /** Shape of the exported / imported JSON file. */
@@ -8,7 +11,10 @@ public class ScanExport {
     private final ScanSession session;
     private final List<FileRecord> files;
 
-    public ScanExport(String exportedAt, ScanSession session, List<FileRecord> files) {
+    @JsonCreator
+    public ScanExport(@JsonProperty("exportedAt") String exportedAt,
+                      @JsonProperty("session") ScanSession session,
+                      @JsonProperty("files") List<FileRecord> files) {
         this.exportedAt = exportedAt;
         this.session = session;
         this.files = files;

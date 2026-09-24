@@ -1,7 +1,7 @@
 package com.khalid.filescanner.api;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.khalid.filescanner.util.AppException;
 
 import java.io.IOException;
@@ -12,13 +12,14 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 
 /**
- * Week 7: calls a real REST API (VirusTotal v3) and parses the JSON response.
+ * Week 7: calls a real REST API (VirusTotal v3) and parses the JSON response with Jackson.
  * Only the SHA-256 hash of the file is sent, never the file itself.
  */
 public final class VirusTotalClient {
     private static final HttpClient HTTP = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(10))
             .build();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     private VirusTotalClient() {
     }
@@ -58,14 +59,14 @@ public final class VirusTotalClient {
 
     private static String parseStats(String body) throws AppException {
         try {
-            JsonObject stats = JsonParser.parseString(body).getAsJsonObject()
-                    .getAsJsonObject("data")
-                    .getAsJsonObject("attributes")
-                    .getAsJsonObject("last_analysis_stats");
+            JsonNode stats = MAPPER.readTree(body)
+                    .path("data")
+                    .path("attributes")
+                    .path("last_analysis_stats");
             return String.format("Malicious: %d | Suspicious: %d | Harmless: %d | Undetected: %d",
-                    stats.get("malicious").getAsInt(), stats.get("suspicious").getAsInt(),
-                    stats.get("harmless").getAsInt(), stats.get("undetected").getAsInt());
-        } catch (RuntimeException e) {
+                    stats.get("malicious").asInt(), stats.get("suspicious").asInt(),
+                    stats.get("harmless").asInt(), stats.get("undetected").asInt());
+        } catch (IOException | NullPointerException e) {
             throw new AppException("Unexpected response format from VirusTotal.", e);
         }
     }
