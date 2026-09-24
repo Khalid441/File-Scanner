@@ -1,5 +1,8 @@
 package com.khalid.filescanner.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /** Summary of one scan (one row in the "scans" table). */
 public class ScanSession {
     private long id;
@@ -12,8 +15,16 @@ public class ScanSession {
     private final int errors;
     private String note;
 
-    public ScanSession(long id, String rootPath, String startedAt, long durationMs, int totalFiles,
-                       int totalFolders, long totalBytes, int errors, String note) {
+    @JsonCreator
+    public ScanSession(@JsonProperty("id") long id,
+                       @JsonProperty("rootPath") String rootPath,
+                       @JsonProperty("startedAt") String startedAt,
+                       @JsonProperty("durationMs") long durationMs,
+                       @JsonProperty("totalFiles") int totalFiles,
+                       @JsonProperty("totalFolders") int totalFolders,
+                       @JsonProperty("totalBytes") long totalBytes,
+                       @JsonProperty("errors") int errors,
+                       @JsonProperty("note") String note) {
         this.id = id;
         this.rootPath = rootPath;
         this.startedAt = startedAt;

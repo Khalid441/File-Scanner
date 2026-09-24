@@ -1,5 +1,8 @@
 package com.khalid.filescanner.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /** One scanned file. Immutable, so it is safe to share between threads. */
 public class FileRecord {
     private final String name;
@@ -8,7 +11,12 @@ public class FileRecord {
     private final long sizeBytes;
     private final long lastModified;
 
-    public FileRecord(String name, String path, String extension, long sizeBytes, long lastModified) {
+    @JsonCreator
+    public FileRecord(@JsonProperty("name") String name,
+                      @JsonProperty("path") String path,
+                      @JsonProperty("extension") String extension,
+                      @JsonProperty("sizeBytes") long sizeBytes,
+                      @JsonProperty("lastModified") long lastModified) {
         this.name = name;
         this.path = path;
         this.extension = extension;
