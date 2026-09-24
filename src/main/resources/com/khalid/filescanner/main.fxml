@@ -18,7 +18,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <HBox alignment="CENTER_LEFT" spacing="8.0">
-                        <Button fx:id="chooseBtn" minWidth="-Infinity" onAction="#onChooseFolder" text="Choose Folder..." />
+                        <Button fx:id="chooseBtn" minWidth="-Infinity" onAction="#onChooseFolder" text="Choose Folder..." styleClass="btn-secondary" />
                         <Label fx:id="folderLabel" maxWidth="Infinity" minWidth="0.0" styleClass="hint" text="No folder selected" textOverrun="CENTER_ELLIPSIS" HBox.hgrow="ALWAYS" />
                      </HBox>
                      <FlowPane alignment="CENTER_LEFT" hgap="8.0" vgap="8.0">
@@ -26,18 +26,18 @@
                            <Label text="Threads:" />
                            <Spinner fx:id="threadSpinner" editable="true" initialValue="4" max="16" min="1" prefWidth="80.0" />
                         </HBox>
-                        <Button fx:id="startBtn" defaultButton="true" onAction="#onStart" text="Start Scan" />
-                        <Button fx:id="pauseBtn" onAction="#onPause" text="Pause" />
-                        <Button fx:id="cancelBtn" onAction="#onCancel" text="Cancel" />
-                        <ToggleButton fx:id="themeToggle" onAction="#onToggleTheme" text="Dark mode" />
+                        <Button fx:id="startBtn" defaultButton="true" onAction="#onStart" text="Start Scan" styleClass="btn-primary" />
+                        <Button fx:id="pauseBtn" onAction="#onPause" text="Pause" styleClass="btn-secondary" />
+                        <Button fx:id="cancelBtn" onAction="#onCancel" text="Cancel" styleClass="btn-danger" />
+                        <ToggleButton fx:id="themeToggle" onAction="#onToggleTheme" text="Dark mode" styleClass="btn-toggle" />
                      </FlowPane>
                      <FlowPane alignment="CENTER_LEFT" hgap="8.0" vgap="8.0">
                         <TextField fx:id="searchField" prefWidth="240.0" promptText="Search by file name..." />
                         <ComboBox fx:id="categoryCombo" prefWidth="150.0" />
                         <Label fx:id="resultCountLabel" styleClass="hint" text="Showing 0 of 0 files" />
                         <CheckBox fx:id="autoSaveCheck" selected="true" text="Save scan to history" />
-                        <Button fx:id="exportBtn" onAction="#onExport" text="Export JSON" />
-                        <Button fx:id="importBtn" onAction="#onImport" text="Import JSON" />
+                        <Button fx:id="exportBtn" onAction="#onExport" text="Export JSON" styleClass="btn-secondary" />
+                        <Button fx:id="importBtn" onAction="#onImport" text="Import JSON" styleClass="btn-secondary" />
                      </FlowPane>
                   </VBox>
                </top>
@@ -101,7 +101,7 @@
                      <FlowPane alignment="CENTER_LEFT" hgap="8.0" vgap="6.0">
                         <Label text="VirusTotal check for the selected file:" />
                         <PasswordField fx:id="apiKeyField" prefWidth="220.0" promptText="API key (or set VT_API_KEY)" />
-                        <Button fx:id="vtBtn" onAction="#onCheckVirusTotal" text="Check hash" />
+                        <Button fx:id="vtBtn" onAction="#onCheckVirusTotal" text="Check hash" styleClass="btn-primary" />
                         <Label fx:id="vtResultLabel" prefWidth="420.0" styleClass="hint" text="Select a file in the table first." wrapText="true" />
                      </FlowPane>
                   </VBox>

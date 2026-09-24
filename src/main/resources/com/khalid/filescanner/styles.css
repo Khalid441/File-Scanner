@@ -1,35 +1,225 @@
+/* ===================== Base ===================== */
 .root {
+    -fx-font-family: "Segoe UI", sans-serif;
     -fx-font-size: 13px;
+    -fx-base: #f5f6fa;
+    -fx-background: #f5f6fa;
+    -fx-accent: #4f46e5;
+    -fx-focus-color: #4f46e5;
+    -fx-faint-focus-color: #4f46e522;
+    -text-primary: #1f2430;
+    -text-muted: #6b7280;
+    -surface: #ffffff;
+    -border-soft: #e3e6ec;
 }
 
+/* ===================== Tabs ===================== */
+.tab-pane .tab-header-area {
+    -fx-padding: 6 10 0 10;
+}
+.tab-pane .tab-header-background {
+    -fx-background-color: -fx-base;
+}
+.tab {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8 8 0 0;
+    -fx-padding: 8 18 8 18;
+}
+.tab:selected {
+    -fx-background-color: -surface;
+}
+.tab .tab-label {
+    -fx-text-fill: -text-muted;
+    -fx-font-weight: bold;
+}
+.tab:selected .tab-label {
+    -fx-text-fill: -text-primary;
+}
+
+/* ===================== Toolbar ===================== */
 .toolbar {
-    -fx-background-color: #f4f6f8;
-    -fx-border-color: #d9dee3;
+    -fx-background-color: -surface;
+    -fx-border-color: -border-soft;
     -fx-border-width: 0 0 1 0;
 }
 
+/* ===================== Cards (stats panel) ===================== */
+.stats-panel {
+    -fx-background-color: -surface;
+    -fx-border-color: -border-soft;
+    -fx-border-width: 0 0 0 1;
+}
 .section-title {
     -fx-font-size: 15px;
     -fx-font-weight: bold;
+    -fx-text-fill: -text-primary;
 }
-
 .stat-value {
     -fx-font-weight: bold;
-    -fx-text-fill: #1f5fbf;
+    -fx-font-size: 14px;
+    -fx-text-fill: -fx-accent;
 }
-
 .hint {
-    -fx-text-fill: #6b7580;
+    -fx-text-fill: -text-muted;
 }
 
-.stats-panel {
-    -fx-background-color: #fafbfc;
-    -fx-border-color: #d9dee3;
-    -fx-border-width: 0 0 0 1;
+/* ===================== Buttons ===================== */
+.button {
+    -fx-background-radius: 8;
+    -fx-padding: 7 16 7 16;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+.button:hover {
+    -fx-opacity: 0.92;
+}
+.button:pressed {
+    -fx-opacity: 0.8;
+}
+.button:disabled {
+    -fx-opacity: 0.45;
+    -fx-cursor: default;
 }
 
-.button:default {
-    -fx-background-color: #1f5fbf;
+/* Secondary (neutral): Choose Folder, Pause, Refresh, Export, Import, etc. */
+.btn-secondary {
+    -fx-background-color: #eef0f6;
+    -fx-text-fill: -text-primary;
+}
+
+/* Primary: Start Scan, Check hash, Load into Scanner */
+.btn-primary, .button:default {
+    -fx-background-color: -fx-accent;
     -fx-text-fill: white;
+}
 
+/* Danger: Cancel, Delete */
+.btn-danger {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+}
+
+/* Theme toggle */
+.btn-toggle {
+    -fx-background-color: #eef0f6;
+    -fx-text-fill: -text-primary;
+    -fx-background-radius: 20;
+    -fx-padding: 7 18 7 18;
+}
+.btn-toggle:selected {
+    -fx-background-color: #2b2d42;
+    -fx-text-fill: white;
+}
+
+/* ===================== Inputs ===================== */
+.text-field, .combo-box, .password-field, .spinner {
+    -fx-background-color: #eef0f6;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-width: 0;
+    -fx-padding: 4 8 4 8;
+}
+.text-field:focused, .combo-box:focused, .password-field:focused {
+    -fx-background-color: -surface;
+    -fx-border-color: -fx-accent;
+    -fx-border-width: 1.5;
+}
+
+/* ===================== Table ===================== */
+.table-view {
+    -fx-background-color: -surface;
+    -fx-table-cell-border-color: transparent;
+}
+.table-view .column-header-background {
+    -fx-background-color: #eef0f6;
+    -fx-background-radius: 0;
+}
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: -border-soft;
+    -fx-size: 34px;
+}
+.table-view .column-header .label {
+    -fx-text-fill: -text-muted;
+    -fx-font-weight: bold;
+}
+.table-row-cell {
+    -fx-background-color: -surface;
+    -fx-border-color: transparent transparent -border-soft transparent;
+    -fx-table-cell-border-color: transparent;
+}
+.table-row-cell:odd {
+    -fx-background-color: #fafbfd;
+}
+.table-row-cell:hover {
+    -fx-background-color: #eef1fb;
+}
+.table-row-cell:selected {
+    -fx-background-color: derive(-fx-accent, 80%);
+    -fx-text-fill: -text-primary;
+}
+
+/* ===================== Progress bar ===================== */
+.progress-bar > .bar {
+    -fx-background-color: -fx-accent;
+    -fx-background-radius: 6;
+    -fx-background-insets: 0;
+}
+.progress-bar > .track {
+    -fx-background-color: #e3e6ec;
+    -fx-background-radius: 6;
+}
+
+/* ===================== Chart ===================== */
+.chart {
+    -fx-padding: 6;
+}
+.chart-title {
+    -fx-text-fill: -text-primary;
+    -fx-font-weight: bold;
+}
+.default-color0.chart-bar {
+    -fx-bar-fill: -fx-accent;
+}
+.axis {
+    -fx-tick-label-fill: -text-muted;
+}
+
+/* ===================== Split pane ===================== */
+.split-pane {
+    -fx-background-color: -fx-base;
+    -fx-padding: 0;
+}
+.split-pane-divider {
+    -fx-background-color: -border-soft;
+    -fx-padding: 0 1 0 1;
+}
+
+/* ===================== Checkbox ===================== */
+.check-box .box {
+    -fx-background-color: -surface;
+    -fx-border-color: -border-soft;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+.check-box:selected .box {
+    -fx-background-color: -fx-accent;
+    -fx-border-color: -fx-accent;
+    /* ===================== Fix Spinner arrows (don't inherit .button styling) ===================== */
+    .spinner .increment-arrow-button,
+    .spinner .decrement-arrow-button {
+        -fx-background-color: #eef0f6;
+        -fx-background-radius: 0;
+        -fx-padding: 0;
+        -fx-pref-width: 18;
+    }
+    .spinner .increment-arrow-button:hover,
+    .spinner .decrement-arrow-button:hover {
+        -fx-background-color: #dfe2ec;
+    }
+    .spinner .increment-arrow,
+    .spinner .decrement-arrow {
+        -fx-background-color: -text-muted;
+    }
 }

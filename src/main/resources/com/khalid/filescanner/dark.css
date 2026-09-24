@@ -1,31 +1,244 @@
 .root {
-    -fx-base: #2b2d30;
-    -fx-background: #1e1f22;
-    -fx-control-inner-background: #2b2d30;
-    -fx-accent: #3574f0;
-    -fx-focus-color: #3574f0;
-    -fx-faint-focus-color: #3574f022;
+    -fx-base: #1e1f26;
+    -fx-background: #17181d;
+    -fx-accent: #6c7bff;
+    -fx-focus-color: #6c7bff;
+    -fx-faint-focus-color: #6c7bff22;
+    -text-primary: #f1f2f6;
+    -text-muted: #a7acb8;
+    -surface: #24262e;
+    -border-soft: #33353f;
 }
 
-.toolbar {
-    -fx-background-color: #26282b;
-    -fx-border-color: #3a3d41;
+.tab-pane .tab-header-background {
+    -fx-background-color: -fx-base;
+}
+.tab:selected {
+    -fx-background-color: -surface;
+}
+.tab .tab-label {
+    -fx-text-fill: -text-muted;
+}
+.tab:selected .tab-label {
+    -fx-text-fill: -text-primary;
 }
 
-.stats-panel {
-    -fx-background-color: #232427;
-    -fx-border-color: #3a3d41;
+.btn-secondary {
+    -fx-background-color: #2f313c;
+    -fx-text-fill: -text-primary;
 }
-
-.hint {
-    -fx-text-fill: #9aa0a6;
+.btn-toggle {
+    -fx-background-color: #2f313c;
+    -fx-text-fill: -text-primary;
 }
-
-.stat-value {
-    -fx-text-fill: #6ea8ff;
-}
-
-.button:default {
-    -fx-background-color: #3574f0;
+.btn-toggle:selected {
+    -fx-background-color: #6c7bff;
     -fx-text-fill: white;
+}
+
+.text-field, .combo-box, .password-field, .spinner {
+    -fx-background-color: #2f313c;
+    -fx-text-fill: -text-primary;
+    -fx-prompt-text-fill: -text-muted;
+}
+.text-field:focused, .combo-box:focused, .password-field:focused {
+    -fx-background-color: -surface;
+}
+.combo-box .list-cell, .combo-box-popup .list-view .list-cell {
+    -fx-text-fill: -text-primary;
+    -fx-background-color: -surface;
+}
+.combo-box .arrow {
+    -fx-background-color: -text-muted;
+}
+
+/* ---- Table: force text color on every layer (header, cells, and the Text node itself) ---- */
+.table-view {
+    -fx-text-fill: -text-primary;
+}
+.table-view .column-header-background {
+    -fx-background-color: #2f313c;
+}
+.table-view .column-header .label {
+    -fx-text-fill: -text-muted;
+}
+.table-row-cell {
+    -fx-text-fill: -text-primary;
+}
+.table-row-cell:odd {
+    -fx-background-color: #202127;
+}
+.table-row-cell:hover {
+    -fx-background-color: #2a2c3a;
+}
+.table-row-cell:selected {
+    -fx-background-color: #38406b;
+    -fx-text-fill: white;
+}
+.table-cell {
+    -fx-text-fill: -text-primary;
+}
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: white;
+}
+.table-cell .text {
+    -fx-fill: -text-primary;
+}
+.table-row-cell:selected .table-cell .text {
+    -fx-fill: white;
+}
+
+.progress-bar > .track {
+    -fx-background-color: #33353f;
+}
+
+.split-pane-divider {
+    -fx-background-color: -border-soft;
+}
+
+.check-box .box {
+    -fx-background-color: -surface;
+    -fx-border-color: -border-soft;
+}
+.check-box {
+    -fx-text-fill: -text-primary;
+}
+
+/* General text everywhere in dark mode */
+.label, .text {
+    -fx-text-fill: -text-primary;
+}
+.hint {
+    -fx-text-fill: -text-muted;
+}
+.section-title {
+    -fx-text-fill: -text-primary;
+}.root {
+     -fx-base: #1e1f26;
+     -fx-background: #17181d;
+     -fx-accent: #6c7bff;
+     -fx-focus-color: #6c7bff;
+     -fx-faint-focus-color: #6c7bff22;
+     -text-primary: #f1f2f6;
+     -text-muted: #a7acb8;
+     -surface: #24262e;
+     -border-soft: #33353f;
+ }
+
+.tab-pane .tab-header-background {
+    -fx-background-color: -fx-base;
+}
+.tab:selected {
+    -fx-background-color: -surface;
+}
+.tab .tab-label {
+    -fx-text-fill: -text-muted;
+}
+.tab:selected .tab-label {
+    -fx-text-fill: -text-primary;
+}
+
+.btn-secondary {
+    -fx-background-color: #2f313c;
+    -fx-text-fill: -text-primary;
+}
+.btn-toggle {
+    -fx-background-color: #2f313c;
+    -fx-text-fill: -text-primary;
+}
+.btn-toggle:selected {
+    -fx-background-color: #6c7bff;
+    -fx-text-fill: white;
+}
+
+.text-field, .combo-box, .password-field, .spinner {
+    -fx-background-color: #2f313c;
+    -fx-text-fill: -text-primary;
+    -fx-prompt-text-fill: -text-muted;
+}
+.text-field:focused, .combo-box:focused, .password-field:focused {
+    -fx-background-color: -surface;
+}
+.combo-box .list-cell, .combo-box-popup .list-view .list-cell {
+    -fx-text-fill: -text-primary;
+    -fx-background-color: -surface;
+}
+.combo-box .arrow {
+    -fx-background-color: -text-muted;
+}
+
+/* ---- Table: force text color on every layer (header, cells, and the Text node itself) ---- */
+.table-view {
+    -fx-text-fill: -text-primary;
+}
+.table-view .column-header-background {
+    -fx-background-color: #2f313c;
+}
+.table-view .column-header .label {
+    -fx-text-fill: -text-muted;
+}
+.table-row-cell {
+    -fx-text-fill: -text-primary;
+}
+.table-row-cell:odd {
+    -fx-background-color: #202127;
+}
+.table-row-cell:hover {
+    -fx-background-color: #2a2c3a;
+}
+.table-row-cell:selected {
+    -fx-background-color: #38406b;
+    -fx-text-fill: white;
+}
+.table-cell {
+    -fx-text-fill: -text-primary;
+}
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: white;
+}
+.table-cell .text {
+    -fx-fill: -text-primary;
+}
+.table-row-cell:selected .table-cell .text {
+    -fx-fill: white;
+}
+
+.progress-bar > .track {
+    -fx-background-color: #33353f;
+}
+
+.split-pane-divider {
+    -fx-background-color: -border-soft;
+}
+
+.check-box .box {
+    -fx-background-color: -surface;
+    -fx-border-color: -border-soft;
+}
+.check-box {
+    -fx-text-fill: -text-primary;
+}
+
+/* General text everywhere in dark mode */
+.label, .text {
+    -fx-text-fill: -text-primary;
+}
+.hint {
+    -fx-text-fill: -text-muted;
+}
+.section-title {
+    -fx-text-fill: -text-primary;
+    /* Fix Spinner arrows in dark mode */
+    .spinner .increment-arrow-button,
+    .spinner .decrement-arrow-button {
+        -fx-background-color: #2f313c;
+    }
+    .spinner .increment-arrow-button:hover,
+    .spinner .decrement-arrow-button:hover {
+        -fx-background-color: #3a3d4a;
+    }
+    .spinner .increment-arrow,
+    .spinner .decrement-arrow {
+        -fx-background-color: -text-muted;
+    }
 }
